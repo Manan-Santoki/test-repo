@@ -50,11 +50,11 @@ pipeline {
         }
 
 
-        stage('Deploy to Kubernetes') {
-            steps {
+        //stage('Deploy to Kubernetes') {
+            //steps {
                 // Use kubectl or Helm to apply the Kubernetes deployment manifests
-                sh 'kubectl apply -f deployment.yaml'
-            }
-        }
+                //sh 'kubectl apply -f deployment.yaml'
+            //}
+        //}
     }
 }
