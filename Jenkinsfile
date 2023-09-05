@@ -13,6 +13,22 @@ pipeline {
                 checkout scm
             }
         }
+
+        stage('Debug') {
+            steps {
+                script {
+                    def dockerVersion = sh(script: 'docker --version', returnStatus: true).toString().trim()
+                    echo "Docker Version: ${dockerVersion}"
+                    def loginCmd = "docker login -u raptor1702 -p manan@202 docker.io"
+                    def loginResult = sh(script: loginCmd, returnStatus: true)
+                    if (loginResult != 0) {
+                        error "Docker login failed"
+                    }
+                }
+            }
+        }
+
+        
         stage('Build Docker Image') {
             steps {
                 script {
