@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-project-deployment
+spec:
+  replicas: 2  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: main-project
+  template:
+    metadata:
+      labels:
+        app: main-project
+    spec:
+      containers:
+        - name: main-project-container
+          image: your-image-repo/main-project:latest  # Use your actual image repository and tag
+          ports:
+            - containerPort: 80  # The port your main project exposes
