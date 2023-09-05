@@ -36,15 +36,20 @@ pipeline {
                 }
             }
         }
+
+
+
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry("$DOCKER_REGISTRY", "$REGISTRY_CREDENTIALS") {
-                        docker.image("$IMAGE_NAME:${env.BUILD_NUMBER}").push()
-                    }
+                    // Push the Docker image to the Docker Hub repository
+                    def dockerImage = docker.image("${IMAGE_NAME}:${env.BUILD_NUMBER}")
+                    dockerImage.push()
                 }
             }
         }
+
+
         stage('Deploy to Kubernetes') {
             steps {
                 // Use kubectl or Helm to apply the Kubernetes deployment manifests
