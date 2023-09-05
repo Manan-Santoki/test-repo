@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_REGISTRY = 'https://hub.docker.com'
         REGISTRY_CREDENTIALS = credentials('your-dockerhub-credentials-id') // Jenkins credentials ID
-        IMAGE_NAME = 'raptor1702/test'
+        IMAGE_NAME = 'docker.io/raptor1702/test'
     }
 
     stages {
